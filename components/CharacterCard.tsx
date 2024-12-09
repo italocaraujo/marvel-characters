@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Link from 'next/link';
+import Image from 'next/image';
 
 interface CharacterCardProps {
   id: number;
@@ -66,13 +67,15 @@ const CharacterCard: React.FC<CharacterCardProps> = ({ id, name, description, th
   return (
     <Link href={`/character/${id}`} passHref>
       <Card>
-        <img
-          src={validThumbnail}
-          alt={name}
-          onError={(e) => {
-            (e.target as HTMLImageElement).src = '/assets/default-character.png'; // Substitui caso a imagem falhe
-          }}
-        />
+      <Image
+        src={validThumbnail}
+        alt={name}
+        width={250}
+        height={250}
+        objectFit="cover" // Para ajustar a imagem sem deformação
+        placeholder="blur"
+        blurDataURL="/assets/default-character.png" // Fallback de imagem
+      />
         <h3>{name}</h3>
         <p>{description ? description : 'No description available.'}</p>
       </Card>
