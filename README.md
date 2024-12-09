@@ -73,6 +73,9 @@ Após configurar o ambiente, rode o servidor de desenvolvimento:
         yarn dev
     **Acesse o aplicativo**: Abra o navegador e vá para http://localhost:3000 para visualizar o projeto rodando localmente.
 
+## 🔗 Link do Deploy
+O projeto está disponível online no seguinte link: [Marvel Characters Explorer - Deploy](https://marvel-characters-black.vercel.app)
+
 ## 🌐 Links Importantes
 [GitHub](https://www.github.com/italocaraujo)
 [LinkedIn](https://www.linkedin.com/in/italocaraujo)
