@@ -33,15 +33,20 @@ export default async function handler(
 
   const { endpoint, params }: { endpoint: string; params: MarvelApiRequestParams } = req.body;
 
+  // Validação do endpoint
   if (!endpoint) {
     res.status(400).json({ error: 'Endpoint é obrigatório' });
     return;
   }
 
   try {
+    // Gerar os parâmetros de autenticação
     const ts = new Date().getTime();
     const hash = md5(ts + PRIVATE_KEY + PUBLIC_KEY);
 
+    console.log(`Chamada para Marvel API: endpoint=${endpoint}, params=`, params); // Log para depuração
+
+    // Requisição para a API Marvel
     const response = await axios.get<MarvelApiResponse<unknown>>(
       `${MARVEL_API_BASE_URL}/${endpoint}`,
       {
@@ -54,13 +59,18 @@ export default async function handler(
       }
     );
 
+    // Retorno dos dados da API Marvel
     res.status(200).json(response.data.data.results);
   } catch (error) {
+    // Tratamento de erros
     if (axios.isAxiosError(error)) {
-      console.error('Erro na API Marvel:', error.response?.data || error.message);
-      res
-        .status(500)
-        .json({ error: error.response?.data?.message || 'Erro ao buscar dados da Marvel API' });
+      console.error(
+        'Erro na API Marvel:',
+        error.response?.data || error.message
+      );
+      res.status(500).json({
+        error: error.response?.data?.message || 'Erro ao buscar dados da Marvel API',
+      });
     } else {
       console.error('Erro desconhecido:', error);
       res.status(500).json({ error: 'Erro desconhecido' });
