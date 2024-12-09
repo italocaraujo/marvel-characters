@@ -10,9 +10,9 @@ const nextConfig = {
   images: {
     remotePatterns: [
       {
-        protocol: 'http',
-        hostname: 'i.annihil.us', // Permite imagens do domínio da API Marvel
-        pathname: '/u/prod/marvel/**', // Permite todos os caminhos sob o diretório /u/prod/marvel/
+        protocol: 'http', // Protocolo usado pela Marvel API (troque para 'https' se necessário)
+        hostname: 'i.annihil.us', // Domínio das imagens
+        pathname: '/u/prod/marvel/**', // Caminho para imagens do Marvel API
       },
     ],
   },

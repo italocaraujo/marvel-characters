@@ -51,6 +51,7 @@ const SearchContainer = styled.div`
     border-radius: 8px 0 0 8px;
     outline: none;
     font-size: 16px;
+    font-family: "Lato", sans-serif;
 
     &:focus {
       border-color: #e62429;
